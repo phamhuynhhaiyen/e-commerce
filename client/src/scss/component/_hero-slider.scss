@@ -1,0 +1,164 @@
+.hero-slider{
+    display: flex;  
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    
+    &__item{
+        @include flex(center, center);
+        flex-shrink: 0;
+        gap: 2rem;
+        width: 100%;
+        height: 100vh;
+        padding: 0 1rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: linear .2s;
+        opacity: 0;
+
+        @include tablet{
+            flex-direction: column-reverse;
+        }
+
+        &__left{
+            flex: 1;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 1;
+                @include tablet{
+                    @include flex(center, center);
+                }
+            }
+            .shape{
+                width: 40rem;
+                height: 40rem;
+                border-radius: 50%;
+                position: absolute;
+                left: 5%;
+                top: 10%;
+                z-index: 0;
+                transition: linear 0.3s;
+                animation: animate 3s infinite;
+
+                @include tablet{
+                    width: 350px;
+                    height: 350px;
+                    top: 0;
+                    left: 25%;
+                }
+
+                @include mobile{
+                    left: 5%;
+                }
+                
+            }
+        }
+        
+        &__right{
+            flex: 1;
+            @include flex(flex-start, center);
+            flex-direction: column;
+            &__title{
+                font-size: 4.5rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+                @include mobile{
+                    font-size: 3.5rem;
+                }
+            }
+            p{
+                font-size: 1.75rem;
+                margin-bottom: 1rem;
+                @include mobile{
+                    font-size: 1.25rem;
+                }
+            }
+            button{
+                background-color: $green;
+                position: relative;
+                text-transform: uppercase;
+                color: #fff;
+                border: none;
+                padding: 1rem 2.5rem;
+                font-size: 1.25rem;
+                font-weight: 600;
+                cursor: pointer;
+                z-index: 0;
+
+                &::before{
+                    content: "";
+                    position: absolute;
+                    background-color: $green;
+                    top: 0;
+                    right: 0; 
+                    width: 0%;
+                    height: 100%;
+                    transition: 0.25s linear;
+                    z-index: -1;
+                }
+                &:hover::before{
+                    left: 0;
+                    width: 100%;
+                }
+                &:hover{
+                    color: #fff;
+                }
+            }
+
+        }
+        
+        
+        &.activeSlide {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        &.lastSlide {
+            transform: translateX(-100%);
+        }
+        &.nextSlide {
+            transform: translateX(100%);
+        }
+    }
+
+    i{  
+        position: absolute;
+        top: 40%;
+        width: 3rem;
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        background: #eee;
+        text-align: center;
+        margin: 0 1rem;
+        cursor: pointer;
+
+        &:first-child{
+            left: 0;
+        }
+
+        &:last-child{
+            right: 0;
+        }
+    }
+    
+}
+@keyframes animate {
+    0%, 100%{
+        transform: translateY(3rem);
+    }
+    50%{
+        transform: translateY(0);
+    }
+}

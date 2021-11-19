@@ -1,0 +1,56 @@
+.footer{
+    font-size: 1.25rem;
+    box-shadow: $box-shadow;
+    &__left{
+        &__logo{
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        &__social{
+            margin-top: 2rem;
+            font-size: 2rem;
+            i{
+                margin-right: 1rem;
+            }
+        }
+        @include tablet{
+            grid-column: 1/4;
+        }
+        @include mobile{
+            grid-column: 1;
+        }
+    }
+
+    &__center{
+        &__title{
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        &__listitem{
+            @include flex(center, flex-start);
+            gap: 5rem;
+            a{
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+        }
+        
+    }
+
+    &__right{
+        &__title{
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        &__item{
+            margin-bottom: 0.5rem;
+            i{
+                font-size: 1.5rem;
+                margin-right: 0.5rem;
+                transform: translateY(15%);
+            }
+        }
+    }
+}
